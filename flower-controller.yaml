@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    component: flower
+  name: flower-controller
+  namespace: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: taskQueue
+        component: flower
+    spec:
+      containers:
+      - image: sahandha/flower-redis
+        name: flower
+        resources:
+          limits:
+            cpu: 100m
